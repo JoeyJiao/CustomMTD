@@ -306,15 +306,6 @@ if [ "`grep -q system /proc/mounts;echo $?`" != "0" ];
 then
     mount /system
 fi
-# first check if 06mountdl is present ( a cm7 script )
-if [ -e /system/etc/init.d/06mountdl ];
-then
-    if [ "`grep -q \#FR\# /system/etc/init.d/06mountdl;echo $?`" != "0" ];
-    then
-        fix06mountdl
-    fi
-    return
-fi
 cacheSizeKBytes=`df |awk '/ \/cache$/ {print $2}'`
 if [ "`expr $cacheSizeKBytes \/ 1024`" -lt "15" ];
 then
@@ -364,6 +355,15 @@ EOF
     then
         ln -s /system/etc/super /system/etc/init.d
     fi
+    # check if 06mountdl is present ( a cm7 script )
+    if [ -e /system/etc/init.d/06mountdl ];
+    then
+        if [ "`grep -q \#FR\# /system/etc/init.d/06mountdl;echo $?`" != "0" ];
+        then
+            fix06mountdl
+        fi
+        return
+    fi
     install -m 700 -o 0 -g 0 -D $wkdir/06BindCache /system/etc/init.d/06BindCache
 fi
 return
@@ -409,6 +409,8 @@ then
     echo "reboot to see changes"
     exit
 fi
+download_loc ()
+{
 avail ()
 {
 partition=`echo $1|sed s/[^a-zA-Z0-9]//g`
@@ -442,7 +444,25 @@ if [ ! -e "$AltDownloadCache" ];
 then
     install -m 771 -o 1000 -g 2001 -d $AltDownloadCache
 fi
+# wtf? for some reason the shell ain't picking up the env
+DOWNLOAD_CACHE=$(awk '$1 == "export" && $2 == "DOWNLOAD_CACHE" {print $3}' /init.rc)
+if [ "$DOWNLOAD_CACHE" = "" ];
+then
+    # snookered here, as android defaults using /cache
+    # so go with the old bindcache
+    bindcache
+fi
 busybox mount -o bind $AltDownloadCache $DOWNLOAD_CACHE
+return
+}
+bindcache ()
+{
+EOF
+cat $wkdir/06BindCache >> /dev/06mountdl
+cat >> /dev/06mountdl << "EOF"
+return
+}
+download_loc
 exit
 EOF
 install -m 700 -o 0 -g 0 /dev/06mountdl /system/etc/init.d/06mountdl
