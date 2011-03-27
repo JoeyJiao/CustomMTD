@@ -451,6 +451,7 @@ then
     # snookered here, as android defaults using /cache
     # so go with the old bindcache
     bindcache
+    return
 fi
 busybox mount -o bind $AltDownloadCache $DOWNLOAD_CACHE
 return
