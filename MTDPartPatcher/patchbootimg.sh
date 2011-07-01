@@ -7,7 +7,7 @@
 #
 # https://github.com/Firerat/CustomMTD
 
-version=1.5.9-Alpha4
+version=1.5.9-Alpha5
 ##
 
 readdmesg ()
@@ -24,13 +24,21 @@ for sanity in misc recovery boot system cache userdata;do
         break
     fi
 done
+# collecting the mtd driver from dmesg now so need to bail if none
+nandtype=`$dmesg|awk '/Creating/ && /MTD partitions on/ {print $NF}'|sed s/\"//g`
+if [ "$nandtype" = "" ];
+then
+    echo "Error1=nand type not found" >> $logfile
+    echo "Error2=try again after fresh reboot" >> $logfile
+    echo "success=false" >> $logfile
+    exit
+fi
 if [ "$sain" = "n" ];
 then
     echo "Error1=Error $sanity not found in dmesg" >> $logfile
     echo "success=false" >> $logfile
     exit
 else
-    CLInit="$CLInit mtdparts=msm_nand:"
     for partition in `cat $dmesgmtdpart|awk '{print $1}'`;do
         eval ${partition}StartHex=`awk '/'$partition'/ {print $2}' $dmesgmtdpart`
         eval ${partition}EndHex=`awk '/'$partition'/ {print $3}' $dmesgmtdpart`
@@ -93,9 +101,8 @@ echo $partition
         then
             partition=system
         fi
-        CLInit="${CLInit}`echo \"${SizeKBytes}K@${StartHex}(${partition})\"`,"
+        eval ${partition}CL="`echo \"${SizeKBytes}K@${StartHex}\(${partition}\)\"`"
     done
-    CLInit="`echo $CLInit|sed s/,\$//`"
 fi
 return
 }
@@ -219,6 +226,7 @@ systemStartHex=`awk '/system/ { print $2 }' $dmesgmtdpart`
 systemStartBytes=`printf %d $(awk '/system/ { print $2 }' $dmesgmtdpart)`
 systemSizeKBytes=`echo|awk '{printf "%d",'$systemMB' * 1024}'`
 systemBytes=`echo|awk '{printf "%f",'$systemSizeKBytes' * 1024}'`
+systemCL="${systemSizeKBytes}k@${systemStartHex}(system)"
 
 cacheSizeKBytes=`echo|awk '{printf "%d",'$cacheMB' * 1024}'`
 cacheBytes=`echo|awk '{printf "%f",'$cacheSizeKBytes' * 1024}'`
@@ -232,18 +240,21 @@ else
     cacheStartBytes=`echo|awk '{printf "%f",'$systemStartBytes' + '$systemBytes'}'`
     cacheStartHex=`echo|awk '{printf "%X",'$cacheStartBytes'}'`
 fi
+cacheCL="${cacheSizeKBytes}k@0x${cacheStartHex}(cache)"
 
 dataStartBytes=`echo|awk '{printf "%f",'$cacheStartBytes' + '$cacheBytes'}'`
 dataStartHex=`echo|awk '{printf "%X",'$dataStartBytes'}'`
 dataSizeBytes=`echo|awk '{printf "%f",'$(printf '%d' ${userdataEndHex})' - '$dataStartBytes'}'`
 dataSizeKBytes=`echo|awk '{printf "%d",'$dataSizeBytes' / 1024}'`
+userdataCL="${dataSizeKBytes}k@0x${dataStartHex}(userdata)"
 
-if [ "$consecutive" = "yes" ];
-then
-    KCMDline="${CLInit},${systemSizeKBytes}k@${systemStartHex}(system),${cacheSizeKBytes}k@0x${cacheStartHex}(cache),${dataSizeKBytes}k@0x${dataStartHex}(userdata)"
-else
-    KCMDline="${CLInit},${cacheSizeKBytes}k@0x${cacheStartHex}(cache),${dataSizeKBytes}k@0x${dataStartHex}(userdata)"
-fi
+buildCMDline="${CLInit} mtdparts=$nandtype"
+for partition in `cat $dmesgmtdpart|awk '{print $1}'`;do
+    eval CL=\$${partition}CL
+    buildCMDline="${buildCMDline}${CL},"
+done
+KCMDline="`echo $buildCMDline|sed s/,\$//`"
+
 for MTDPart in system cache data;do
     eval SizeKB=\$${MTDPart}SizeKBytes
     eval SizeMB=`echo|awk '{printf "%.3f",'$SizeKB'/1024}'`
