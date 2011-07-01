@@ -1,0 +1,554 @@
+<6>[    0.000000] Initializing cgroup subsys cpu
+<5>[    0.000000] Linux version 2.6.29-omap1-hgb9fcbc3e35d9-dirty (walter@lanbox) (gcc version 4.4.1 (Sourcery G++ Lite 2009q3-67) ) #49 PREEMPT Sat Feb 6 06:50:16 EST 2010
+<4>[    0.000000] CPU: ARMv7 Processor [411fc083] revision 3 (ARMv7), cr=10c5387f
+<4>[    0.000000] CPU: VIPT nonaliasing data cache, VIPT nonaliasing instruction cache
+<4>[    0.000000] Machine: sholes
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000401
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000402
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000403
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000404
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000405
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000406
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000407
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000408
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000409
+<4>[    0.000000] Ignoring unrecognised tag 0xf100040a
+<4>[    0.000000] Ignoring unrecognised tag 0xf100040b
+<4>[    0.000000] Ignoring unrecognised tag 0xf100040c
+<4>[    0.000000] Ignoring unrecognised tag 0xf100040d
+<4>[    0.000000] Ignoring unrecognised tag 0xf100040e
+<4>[    0.000000] Ignoring unrecognised tag 0xf100040f
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000410
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000411
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000412
+<4>[    0.000000] Ignoring unrecognised tag 0xf1000413
+<4>[    0.000000] Memory policy: ECC disabled, Data cache writeback
+<7>[    0.000000] On node 0 totalpages: 62464
+<7>[    0.000000] free_area_init_node: node 0, pgdat c055f2ec, node_mem_map c062d000
+<7>[    0.000000]   Normal zone: 488 pages used for memmap
+<7>[    0.000000]   Normal zone: 0 pages reserved
+<7>[    0.000000]   Normal zone: 61976 pages, LIFO batch:15
+<6>[    0.000000] OMAP3430 ES3.1
+<6>[    0.000000] SRAM: Mapped pa 0x40200000 to va 0xe3000000 size: 0x100000
+<6>[    0.000000] Reserving 5242880 bytes SDRAM for VRAM
+<4>[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 61976
+<5>[    0.000000] Kernel command line: console=ttyS2,115200n8 console=ttyMTD7 rw mem=244M@0x80C00000 init=/init ip=off brdrev=P3A_CDMA mtdparts=omap2-nand.0:1536k@1792k(pds),384k@6272k(misc),3584k(boot)ro,4608k(recovery),143744k(system),94848k(cache),268032k(userdata),2m(kpanic) androidboot.mode=reboot androidboot.bootloader=2C6C0 androidboot.serialno=040369841100300B
+<6>[    0.000000] boot_mode=reboot
+<3>[    0.000000] Unknown boot option `androidboot.bootloader=2C6C0': ignoring
+<3>[    0.000000] Unknown boot option `androidboot.serialno=040369841100300B': ignoring
+<6>[    0.000000] Clocking rate (Crystal/DPLL/ARM core): 26.0/321/550 MHz
+<6>[    0.000000] Reprogramming SDRC
+<6>[    0.000000] GPMC revision 5.0
+<6>[    0.000000] IRQ: Found an INTC at 0xd8200000 (revision 4.0) with 96 interrupts
+<6>[    0.000000] Total of 96 interrupts on 1 active controller
+<6>[    0.000000] OMAP34xx GPIO hardware version 2.5
+<4>[    0.000000] PID hash table entries: 1024 (order: 10, 4096 bytes)
+<6>[    0.000000] OMAP clockevent source: GPTIMER1 at 32768 Hz
+<6>[    0.000000] Dentry cache hash table entries: 32768 (order: 5, 131072 bytes)
+<6>[    0.000000] Inode-cache hash table entries: 16384 (order: 4, 65536 bytes)
+<6>[    0.000000] Memory: 244MB = 244MB total
+<5>[    0.000000] Memory: 229504KB available (5032K code, 1049K data, 196K init)
+<6>[    0.000000] Calibrating delay loop... 549.33 BogoMIPS (lpj=2146304)
+<4>[    0.000000] Mount-cache hash table entries: 512
+<6>[    0.000000] Initializing cgroup subsys debug
+<6>[    0.000000] Initializing cgroup subsys cpuacct
+<6>[    0.000000] Initializing cgroup subsys freezer
+<6>[    0.000000] CPU: Testing write buffer coherency: ok
+<6>[    0.000000] net_namespace: 948 bytes
+<6>[    0.000000] regulator: core version 0.5
+<6>[    0.000000] NET: Registered protocol family 16
+<4>[    0.000000] MUX: setup AF26_34XX_GPIO0 (0xd80021e0): 0x011f -> 0x0104
+<4>[    0.000000] MUX: setup AA9_34XX_UART1_RTS (0xd800217e): 0x0007 -> 0x0000
+<4>[    0.000000] MUX: setup W8_34XX_UART1_CTS (0xd8002180): 0x0007 -> 0x0100
+<4>[    0.000000] MUX: setup AA25_34XX_UART2_TX (0xd8002178): 0x011f -> 0x0000
+<4>[    0.000000] MUX: setup AD25_34XX_UART2_RX (0xd800217a): 0x011f -> 0x0118
+<4>[    0.000000] MUX: setup AB25_34XX_UART2_RTS (0xd8002176): 0x011f -> 0x0000
+<4>[    0.000000] MUX: setup AB26_34XX_UART2_CTS (0xd8002174): 0x011f -> 0x0118
+<6>[    0.000000] sholes_als_init:Initializing
+<4>[    0.000000] MUX: setup AC27_34XX_GPIO92 (0xd8002108): 0x010f -> 0x0104
+<4>[    0.000000] MUX: setup AH22_34XX_DSI_DY0 (0xd80020de): 0x0001 -> 0x0201
+<4>[    0.000000] MUX: setup AH23_34XX_DSI_DY1 (0xd80020e2): 0x0001 -> 0x0201
+<4>[    0.000000] MUX: setup AH24_34XX_DSI_DY2 (0xd80020e6): 0x0001 -> 0x0201
+<4>[    0.000000] MUX: setup Y3_34XX_GPIO180 (0xd80021da): 0x010f -> 0x0104
+<4>[    0.000000] MUX: setup AG25_34XX_GPIO10 (0xd8002a1a): 0x010f -> 0x0104
+<4>[    0.000000] MUX: setup B26_34XX_GPIO111 (0xd800212e): 0x010f -> 0x0104
+<4>[    0.000000] MUX: setup Y4_34XX_GPIO181 (0xd80021dc): 0x011f -> 0x0004
+<4>[    0.000000] MUX: setup AB10_34XX_GPIO28_OUT (0xd80025f8): 0x010c -> 0x0004
+<4>[    0.000000] MUX: setup AC3_34XX_GPIO175 (0xd80021d0): 0x011f -> 0x0104
+<4>[    0.000000] MUX: setup A24_34XX_CAM_HS (0xd800210c): 0x010f -> 0x0118
+<4>[    0.000000] MUX: setup A23_34XX_CAM_VS (0xd800210e): 0x010f -> 0x0118
+<4>[    0.000000] MUX: setup C25_34XX_CAM_XCLKA (0xd8002110): 0x010f -> 0x0000
+<4>[    0.000000] MUX: setup C27_34XX_CAM_PCLK (0xd8002112): 0x010f -> 0x0118
+<4>[    0.000000] MUX: setup C23_34XX_CAM_FLD (0xd8002114): 0x010f -> 0x0004
+<4>[    0.000000] MUX: setup AG17_34XX_CAM_D0 (0xd8002116): 0x010f -> 0x011c
+<4>[    0.000000] MUX: setup AH17_34XX_CAM_D1 (0xd8002118): 0x010f -> 0x0104
+<4>[    0.000000] MUX: setup B24_34XX_CAM_D2 (0xd800211a): 0x010f -> 0x0100
+<4>[    0.000000] MUX: setup C24_34XX_CAM_D3 (0xd800211c): 0x010f -> 0x0100
+<4>[    0.000000] MUX: setup D24_34XX_CAM_D4 (0xd800211e): 0x010f -> 0x0100
+<4>[    0.000000] MUX: setup A25_34XX_CAM_D5 (0xd8002120): 0x010f -> 0x0100
+<4>[    0.000000] MUX: setup K28_34XX_CAM_D6 (0xd8002122): 0x010f -> 0x0100
+<4>[    0.000000] MUX: setup L28_34XX_CAM_D7 (0xd8002124): 0x010f -> 0x0100
+<4>[    0.000000] MUX: setup K27_34XX_CAM_D8 (0xd8002126): 0x010f -> 0x0100
+<4>[    0.000000] MUX: setup L27_34XX_CAM_D9 (0xd8002128): 0x010f -> 0x0100
+<4>[    0.000000] MUX: setup B25_34XX_CAM_D10 (0xd800212a): 0x010f -> 0x0100
+<4>[    0.000000] MUX: setup C26_34XX_CAM_D11 (0xd800212c): 0x010f -> 0x0100
+<4>[    0.000000] MUX: setup B23_34XX_CAM_WEN (0xd8002130): 0x010f -> 0x0002
+<4>[    0.000000] MUX: setup D25_34XX_CAM_STROBE (0xd8002132): 0x010f -> 0x0000
+<4>[    0.000000] MUX: setup K8_34XX_GPMC_WAIT2 (0xd80020d0): 0x011f -> 0x0004
+<4>[    0.000000] MUX: setup H19_34XX_GPIO164_OUT (0xd800219c): 0x011f -> 0x0004
+<4>[    0.000000] MUX: setup AG17_34XX_GPIO99 (0xd8002116): 0x011c -> 0x0104
+<4>[    0.000000] MUX: setup P21_OMAP34XX_MCBSP2_FSX (0xd800213c): 0x010f -> 0x0108
+<4>[    0.000000] MUX: setup N21_OMAP34XX_MCBSP2_CLKX (0xd800213e): 0x010f -> 0x0108
+<4>[    0.000000] MUX: setup R21_OMAP34XX_MCBSP2_DR (0xd8002140): 0x010f -> 0x0108
+<4>[    0.000000] MUX: setup M21_OMAP34XX_MCBSP2_DX (0xd8002142): 0x010f -> 0x0000
+<4>[    0.000000] MUX: setup K26_OMAP34XX_MCBSP3_FSX (0xd8002196): 0x010f -> 0x010a
+<4>[    0.000000] MUX: setup W21_OMAP34XX_MCBSP3_CLKX (0xd8002198): 0x010f -> 0x010a
+<4>[    0.000000] MUX: setup U21_OMAP34XX_MCBSP3_DR (0xd8002192): 0x010f -> 0x010a
+<4>[    0.000000] MUX: setup V21_OMAP34XX_MCBSP3_DX (0xd8002190): 0x010f -> 0x0002
+<4>[    0.000000] MUX: setup AE5_34XX_GPIO143 (0xd8002172): 0x010f -> 0x0104
+<4>[    0.000000] MUX: setup AF5_34XX_GPIO142 (0xd8002170): 0x0004 -> 0x0104
+<4>[    0.000000] MUX: setup AD1_3430_USB3FS_PHY_MM3_RXRCV (0xd8002186): 0x0107 -> 0x010e
+<4>[    0.000000] MUX: setup AD2_3430_USB3FS_PHY_MM3_TXDAT (0xd8002188): 0x0007 -> 0x010e
+<4>[    0.000000] MUX: setup AC1_3430_USB3FS_PHY_MM3_TXEN_N (0xd800218a): 0x0007 -> 0x0006
+<4>[    0.000000] MUX: setup AE1_3430_USB3FS_PHY_MM3_TXSE0 (0xd8002184): 0x0107 -> 0x010e
+<4>[    0.000000] MUX: setup H16_34XX_SDRC_CKE0 (0xd8002262): 0x011f -> 0x0000
+<4>[    0.000000] MUX: setup H17_34XX_SDRC_CKE1 (0xd8002264): 0x011f -> 0x0000
+<4>[    0.000000] MUX: setup AE2_3430_MMC2_CLK (0xd8002158): 0x010f -> 0x0100
+<4>[    0.000000] MUX: setup AG5_3430_MMC2_CMD (0xd800215a): 0x011f -> 0x0118
+<4>[    0.000000] MUX: setup AH5_3430_MMC2_DAT0 (0xd800215c): 0x011f -> 0x0118
+<4>[    0.000000] MUX: setup AH4_3430_MMC2_DAT1 (0xd800215e): 0x011f -> 0x0118
+<4>[    0.000000] MUX: setup AG4_3430_MMC2_DAT2 (0xd8002160): 0x011f -> 0x0118
+<4>[    0.000000] MUX: setup AF4_3430_MMC2_DAT3 (0xd8002162): 0x011f -> 0x0118
+<4>[    0.000000] MUX: setup AE22_34XX_GPIO186_OUT (0xd80021e2): 0x010f -> 0x0004
+<4>[    0.000000] MUX: setup J8_3430_GPIO65 (0xd80020d2): 0x011f -> 0x0104
+<4>[    0.000000] MUX: setup J25_34XX_HDQ_SIO (0xd80021c6): 0x011f -> 0x0100
+<4>[    0.000000] MUX: setup T3_34XX_GPIO_179 (0xd80021d8): 0x010f -> 0x0004
+<4>[    0.000000] MUX: setup AF21_34XX_GPIO8 (0xd8002a16): 0x0100 -> 0x0004
+<4>[    0.000000] MUX: setup W7_34XX_GPIO178_DOWN (0xd80021d6): 0x010f -> 0x010c
+<4>[    0.000000] MUX: setup N28_3430_MMC1_CLK (0xd8002144): 0x010f -> 0x0000
+<4>[    0.000000] MUX: setup M27_3430_MMC1_CMD (0xd8002146): 0x010f -> 0x0118
+<4>[    0.000000] MUX: setup N27_3430_MMC1_DAT0 (0xd8002148): 0x010f -> 0x0118
+<4>[    0.000000] MUX: setup N26_3430_MMC1_DAT1 (0xd800214a): 0x010f -> 0x0118
+<4>[    0.000000] MUX: setup N25_3430_MMC1_DAT2 (0xd800214c): 0x010f -> 0x0118
+<4>[    0.000000] MUX: setup P28_3430_MMC1_DAT3 (0xd800214e): 0x010f -> 0x0118
+<4>[    0.000000] MUX: setup P27_3430_MMC1_DAT4 (0xd8002150): 0x010f -> 0x0118
+<4>[    0.000000] MUX: setup P26_3430_MMC1_DAT5 (0xd8002152): 0x010f -> 0x0118
+<4>[    0.000000] MUX: setup R27_3430_MMC1_DAT6 (0xd8002154): 0x010f -> 0x0118
+<4>[    0.000000] MUX: setup R25_3430_MMC1_DAT7 (0xd8002156): 0x010f -> 0x0118
+<4>[    0.000000] MUX: setup AB1_34XX_GPIO176_OUT (0xd80021d2): 0x401c -> 0x0004
+<4>[    0.000000] MUX: setup AE15_34XX_I2C2_SDA (0xd80021c0): 0x011f -> 0x0118
+<4>[    0.000000] MUX: setup AF15_34XX_I2C2_SCL (0xd80021be): 0x011f -> 0x0118
+<4>[    0.000000] MUX: setup AG14_34XX_I2C3_SDA (0xd80021c4): 0x011f -> 0x0118
+<4>[    0.000000] MUX: setup AF14_34XX_I2C3_SCL (0xd80021c2): 0x011f -> 0x0118
+<6>[    6.197845] OMAP DMA hardware revision 4.0
+<6>[    6.197937] Reserving DMA channels 0 and 1 for HS ROM code
+<4>[    6.219421] bio: create slab <bio-0> at 0
+<6>[    6.220977] omap-uart.1: ttyS0 at MMIO 0x4806a000 (irq = 72) is a OMAP UART1
+<6>[    6.221405] omap-uart.2: ttyS1 at MMIO 0x4806c000 (irq = 73) is a OMAP UART2
+<6>[    6.221771] omap-uart.3: ttyS2 at MMIO 0x49020000 (irq = 74) is a OMAP UART3
+<6>[    6.221801] console [ttyS2] enabled
+<6>[    7.162322] i2c_omap i2c_omap.1: bus 1 rev3.12 at 400 kHz
+<6>[    7.168884] i2c_omap i2c_omap.2: bus 2 rev3.12 at 400 kHz
+<6>[    7.189910] i2c_omap i2c_omap.3: bus 3 rev3.12 at 400 kHz
+<6>[    7.200469] regulator: sw5: 5050 mV 
+<6>[    7.204864] regulator: vusb: 3300 mV 
+<6>[    7.209869] regulator: vcam: 2900 mV 
+<6>[    7.215759] regulator: vcsi: 1800 mV 
+<6>[    7.220672] regulator: vdac: 1800 mV 
+<6>[    7.225219] regulator: vdig: 1200 <--> 1875 mV 
+<6>[    7.230621] regulator: vfuse: 1500 <--> 3150 mV 
+<6>[    7.237182] regulator: vhvio: 2775 mV 
+<6>[    7.242218] regulator: vsdio: 2900 mV 
+<6>[    7.247375] regulator: vpll: 1800 mV 
+<6>[    7.251861] regulator: vrf1: 2500 <--> 2775 mV 
+<6>[    7.257324] regulator: vrf2: 2775 mV 
+<6>[    7.261840] regulator: vrfref: 2500 <--> 2775 mV 
+<6>[    7.267425] regulator: vwlan1: 1800 <--> 1900 mV 
+<6>[    7.273529] regulator: vwlan2: 3000 mV 
+<6>[    7.278228] regulator: vsim: 1800 <--> 2900 mV 
+<6>[    7.283691] regulator: vsimcard: 1800 <--> 2900 mV 
+<6>[    7.289459] regulator: vvib: 1300 <--> 3000 mV 
+<6>[    7.295928] regulator: vaudio: 2775 mV normal standby
+<6>[    7.305999] cpcap_usb cpcap_usb: Initialized CPCAP USB module
+<6>[    7.313110] usbcore: registered new interface driver usbfs
+<6>[    7.319427] usbcore: registered new interface driver hub
+<6>[    7.325378] usbcore: registered new device driver usb
+<6>[    7.335968] Bluetooth: Core ver 2.15
+<6>[    7.340118] NET: Registered protocol family 31
+<6>[    7.344757] Bluetooth: HCI device and connection manager initialized
+<6>[    7.351470] Bluetooth: HCI socket layer initialized
+<6>[    7.359161] musb_hdrc: version 6.0, musb-dma, otg (peripheral+host), debug=0
+<7>[    7.366699] Switched to high resolution mode on CPU 0
+<7>[    7.366943] musb_hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine (X), bulk split (X), HB-ISO Rx (X), HB-ISO Tx (X), SoftConn)
+<7>[    7.366973] musb_hdrc: MHDRC RTL version 1.400 
+<7>[    7.367004] musb_hdrc: setup fifo_mode 4
+<7>[    7.367034] musb_hdrc: 29/31 max ep, 15424/16384 memory
+<7>[    7.367034] musb_hdrc: hw_ep 0shared, max 64
+<7>[    7.367065] musb_hdrc: hw_ep 1tx, max 512
+<7>[    7.367065] musb_hdrc: hw_ep 1rx, max 512
+<7>[    7.367065] musb_hdrc: hw_ep 2tx, max 512
+<7>[    7.367095] musb_hdrc: hw_ep 2rx, max 512
+<7>[    7.367095] musb_hdrc: hw_ep 3tx, max 512
+<7>[    7.367095] musb_hdrc: hw_ep 3rx, max 512
+<7>[    7.367126] musb_hdrc: hw_ep 4tx, max 512
+<7>[    7.367126] musb_hdrc: hw_ep 4rx, max 512
+<7>[    7.367156] musb_hdrc: hw_ep 5tx, max 512
+<7>[    7.367156] musb_hdrc: hw_ep 5rx, max 512
+<7>[    7.367156] musb_hdrc: hw_ep 6tx, max 512
+<7>[    7.367187] musb_hdrc: hw_ep 6rx, max 512
+<7>[    7.367187] musb_hdrc: hw_ep 7tx, max 512
+<7>[    7.367218] musb_hdrc: hw_ep 7rx, max 512
+<7>[    7.367218] musb_hdrc: hw_ep 8tx, max 512
+<7>[    7.367218] musb_hdrc: hw_ep 8rx, max 512
+<7>[    7.367248] musb_hdrc: hw_ep 9tx, max 512
+<7>[    7.367248] musb_hdrc: hw_ep 9rx, max 512
+<7>[    7.367279] musb_hdrc: hw_ep 10tx, max 512
+<7>[    7.367279] musb_hdrc: hw_ep 10rx, max 512
+<7>[    7.367279] musb_hdrc: hw_ep 11tx, max 512
+<7>[    7.367309] musb_hdrc: hw_ep 11rx, max 512
+<7>[    7.367309] musb_hdrc: hw_ep 12tx, max 512
+<7>[    7.367340] musb_hdrc: hw_ep 12rx, max 512
+<7>[    7.367340] musb_hdrc: hw_ep 13tx, max 512
+<7>[    7.367340] musb_hdrc: hw_ep 13rx, max 512
+<7>[    7.367370] musb_hdrc: hw_ep 14shared, max 1024
+<7>[    7.367370] musb_hdrc: hw_ep 15shared, max 1024
+<6>[    7.367401] musb_hdrc: USB OTG mode controller at d80ab000 using DMA, IRQ 92
+<6>[    7.375823] NET: Registered protocol family 2
+<6>[    7.380584] IP route cache hash table entries: 2048 (order: 1, 8192 bytes)
+<6>[    7.388397] TCP established hash table entries: 8192 (order: 4, 65536 bytes)
+<6>[    7.396057] TCP bind hash table entries: 8192 (order: 3, 32768 bytes)
+<6>[    7.402984] TCP: Hash tables configured (established 8192 bind 8192)
+<6>[    7.409667] TCP reno registered
+<6>[    7.413208] NET: Registered protocol family 1
+<6>[    7.418334] checking if image is initramfs... it is
+<6>[    7.475708] Freeing initrd memory: 156K
+<6>[    7.480834] dspbridge_init: 600000 bytes @ 81a00000
+<4>[    7.486389] MUX: setup K3_34XX_GPIO43_OUT (0xd800208c): 0x011c -> 0x0004
+<4>[    7.493469] MUX: setup V8_34XX_GPIO53_OUT (0xd80020b2): 0x011c -> 0x0004
+<4>[    7.500518] MUX: setup U8_34XX_GPIO54_OUT (0xd80020b4): 0x011c -> 0x0004
+<4>[    7.507568] MUX: setup T8_34XX_GPIO55_OUT (0xd80020b6): 0x011c -> 0x0004
+<4>[    7.514587] MUX: setup R8_34XX_GPIO56_OUT (0xd80020b8): 0x011c -> 0x0004
+<4>[    7.521636] MUX: setup P8_34XX_GPIO57_OUT (0xd80020ba): 0x011c -> 0x0004
+<4>[    7.528656] MUX: setup N8_34XX_GPIO58_OUT (0xd80020bc): 0x011c -> 0x0004
+<4>[    7.535705] MUX: setup L8_34XX_GPIO63_OUT (0xd80020ce): 0x011c -> 0x0004
+<4>[    7.542755] MUX: setup AB2_34XX_GPIO177 (0xd80021d4): 0x011f -> 0x0104
+<4>[    7.550262] sholes_wifi_init: start
+<4>[    7.554290] NetWinder Floating Point Emulator V0.97 (double precision)
+<6>[    7.570434] ashmem: initialized
+<5>[    7.574218] VFS: Disk quotas dquot_6.5.2
+<4>[    7.578491] Dquot-cache hash table entries: 1024 (order 0, 4096 bytes)
+<6>[    7.586547] Registering unionfs 2.5.3 (for 2.6.29.6)
+<4>[    7.592132] yaffs Feb  5 2010 14:54:45 Installing. 
+<6>[    7.597320] msgmni has been set to 449
+<6>[    7.605316] alg: No test for stdrng (krng)
+<6>[    7.609741] io scheduler noop registered
+<6>[    7.613983] io scheduler cfq registered (default)
+<6>[    7.620269] OMAP DSS rev 2.0
+<6>[    7.623382] OMAP DISPC rev 3.0
+<6>[    7.626800] OMAP DSI rev 1.0
+<7>[    7.630584] sholes-panel: sholes_panel_init
+<7>[    7.630859] sholes-panel: probe
+<6>[    7.636230] pvrsrvkm: module loaded
+<6>[    7.650695] brd: module loaded
+<6>[    7.659423] loop: module loaded
+<6>[    7.663848] input: compass as /devices/virtual/input/input0
+<6>[    7.670501] <6>LIS331DLH accelerometer driver
+<6>[    7.677307] input: accelerometer as /devices/virtual/input/input1
+<6>[    7.684783] lis331dlh 2-0019: lis331dlh probed
+<6>[    7.694183] ts27010 mux registered
+<6>[    7.698486] omap_mdm_ctrl_probe: Loaded omap_mdm_ctrl device driver
+<6>[    7.758361] Android kernel panic handler initialized (bind=kpanic)
+<6>[    7.765441] input: cpcap-key as /devices/virtual/input/input2
+<6>[    7.771453] cpcap_key cpcap_key: CPCAP key device probed
+<3>[    7.790557] regulator_check_voltage: operation not allowed for vaudio
+<6>[    7.797851] cpcap spi1.0: Headset key event: old=0, new=0
+<6>[    7.803497] cpcap spi1.0: New headset state: 0
+<6>[    7.808441] PPP generic driver version 2.4.2
+<6>[    7.813476] PPP Deflate Compression module registered
+<6>[    7.818756] PPP BSD Compression module registered
+<6>[    7.824462] PPP MPPE Compression module registered
+<6>[    7.829559] NET: Registered protocol family 24
+<6>[    7.834197] tun: Universal TUN/TAP device driver, 1.6
+<6>[    7.839508] tun: (C) 1999-2004 Max Krasnyansky <maxk@qualcomm.com>
+<6>[    7.846740] Linux video capture interface: v2.00
+<6>[    7.851867] mt9p012 driver loading
+<6>[    7.857116] hp3a hp3a-omap: Registered hp3a driver.
+<6>[    7.903564] i2c /dev entries driver
+<6>[    7.912017] omap2-nand driver initializing
+<3>[    7.916717] omap2-nand: irqstatus set on cmd entry ff
+<6>[    7.922088] NAND device: Manufacturer ID: 0x98, Chip ID: 0xbc (Toshiba NAND 512MiB 1,8V 16-bit)
+<5>[    7.931274] 8 cmdlinepart partitions found on MTD device omap2-nand.0
+<5>[    7.938018] Creating 8 MTD partitions on "omap2-nand.0":
+<5>[    7.943572] 0x0000001c0000-0x000000340000 : "pds"
+<5>[    7.950897] 0x000000620000-0x000000680000 : "misc"
+<5>[    7.957214] 0x000000680000-0x000000a00000 : "boot"
+<5>[    7.964294] 0x000000a00000-0x000000e80000 : "recovery"
+<5>[    7.971893] 0x000000e80000-0x000009ae0000 : "system"
+<5>[    8.013366] 0x000009ae0000-0x00000f780000 : "cache"
+<5>[    8.042755] 0x00000f780000-0x00001fd40000 : "userdata"
+<5>[    8.114501] 0x00001fd40000-0x00001ff40000 : "kpanic"
+<6>[    8.122222] apanic: Bound to mtd partition 'kpanic'
+<6>[    8.127380] apanic: No panic data available
+<7>[    8.175506] apanic: kpanic partition erased
+<6>[    8.176544] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+<6>[    8.183807] ehci-omap ehci-omap.0: OMAP-EHCI Host Controller
+<6>[    8.190734] ehci-omap ehci-omap.0: new USB bus registered, assigned bus number 1
+<6>[    8.199005] ehci-omap ehci-omap.0: irq 77, io mem 0x48064800
+<6>[    8.218292] ehci-omap ehci-omap.0: USB 2.0 started, EHCI 1.00
+<6>[    8.225097] usb usb1: configuration #1 chosen from 1 choice
+<6>[    8.231414] hub 1-0:1.0: USB hub found
+<6>[    8.235473] hub 1-0:1.0: 3 ports detected
+<6>[    8.241485] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+<6>[    8.248291] ohci ohci.0: OMAP OHCI
+<6>[    8.252746] ohci ohci.0: new USB bus registered, assigned bus number 2
+<6>[    8.259704] ohci ohci.0: irq 76, io mem 0x48064400
+<6>[    8.340789] usb usb2: configuration #1 chosen from 1 choice
+<6>[    8.347076] hub 2-0:1.0: USB hub found
+<6>[    8.351104] hub 2-0:1.0: 3 ports detected
+<6>[    8.357482] usbcore: registered new interface driver usbserial
+<6>[    8.363647] usbserial: USB Serial Driver core
+<6>[    8.368499] USB Serial support registered for moto-modem
+<6>[    8.374298] usbcore: registered new interface driver moto-modem
+<6>[    8.380767] USB Serial support registered for QSC 6085 Modem Driver
+<6>[    8.387634] usbcore: registered new interface driver cdma-modem
+<6>[    8.394104] USB Serial support registered for moto-flashqsc
+<6>[    8.400238] usbcore: registered new interface driver moto-flashqsc
+<6>[    8.406738] android init
+<6>[    8.409484] android_probe pdata: c0531c34
+<6>[    8.414428] android_bind
+<7>[    8.417083] android_bind_config
+<6>[    8.417083] mass_storage_function_add
+<6>[    8.421295] fsg_probe pdata: c05320b4
+<6>[    8.425659] android_usb gadget: Number of LUNs=1
+<6>[    8.430572] adb_function_add
+<6>[    8.434020] android_usb gadget: android_usb ready
+<6>[    8.438995] musb_hdrc musb_hdrc: MUSB HDRC host driver
+<6>[    8.445434] musb_hdrc musb_hdrc: new USB bus registered, assigned bus number 3
+<6>[    8.453857] usb usb3: configuration #1 chosen from 1 choice
+<6>[    8.460083] hub 3-0:1.0: USB hub found
+<6>[    8.464172] hub 3-0:1.0: 1 port detected
+<6>[    8.470794] qtouch_force_reset: Forcing HW reset
+<6>[    8.547027] qtouch_process_info_block: Build version is 0x19
+<6>[    8.553375] qtouch_process_info_block: Object 2 @ 0x004c (168) insts 1 rep_ids 0
+<6>[    8.561523] qtouch_process_info_block: Object 3 @ 0x00f4 (168) insts 1 rep_ids 0
+<3>[    8.569396] hub 1-0:1.0: unable to enumerate USB device on port 3
+<6>[    8.576232] qtouch_process_info_block: Object 5 @ 0x019c (8) insts 1 rep_ids 0
+<6>[    8.584259] qtouch_process_info_block: Object 6 @ 0x01a4 (5) insts 1 rep_ids 1
+<6>[    8.592285] qtouch_process_info_block: Object 7 @ 0x01a9 (3) insts 1 rep_ids 0
+<6>[    8.600280] qtouch_process_info_block: Object 8 @ 0x01ac (6) insts 1 rep_ids 0
+<6>[    8.608245] qtouch_process_info_block: Object 9 @ 0x01b2 (26) insts 1 rep_ids 6
+<6>[    8.616363] qtouch_process_info_block: Object 15 @ 0x01cc (11) insts 2 rep_ids 1
+<6>[    8.624542] qtouch_process_info_block: Object 17 @ 0x01e2 (37) insts 1 rep_ids 0
+<6>[    8.632720] qtouch_process_info_block: Object 20 @ 0x0207 (11) insts 1 rep_ids 0
+<6>[    8.640899] qtouch_process_info_block: Object 36 @ 0x0212 (4) insts 1 rep_ids 1
+<4>[    8.648895] qtouch_process_info_block: Checksum mismatch (0x8c57 != 0xf82b)
+<6>[    8.656188] qtouch_process_info_block: qtouch-obp-ts found. family 0x31, variant 0x1, ver 0x19, build 0x5, matrix 12x7, 11 objects.
+<6>[    8.669311] input: qtouch-touchscreen as /devices/virtual/input/input3
+<6>[    8.677185] do_cmd_proc_msg: Reset done.
+<6>[    8.681335] do_cmd_proc_msg: Self-calibration started.
+<6>[    8.687500] GPIO Matrix Keypad Driver: Start keypad matrix for sholes-keypad in interrupt mode
+<6>[    8.696624] GPIO Input Driver: Start gpio inputs for sholes-keypad in interrupt mode
+<6>[    8.705657] input: sholes-keypad as /devices/virtual/input/input4
+<6>[    8.715057] input: proximity as /devices/virtual/input/input5
+<6>[    8.721984] sfh7743 sfh7743: sfh7743 probed
+<6>[    8.727813] using input dev sholes-keypad for key reset
+<6>[    8.735321] cpcap_rtc cpcap_rtc: rtc core: registered cpcap_rtc as rtc0
+<6>[    8.743072] Driver for 1-wire Dallas network protocol.
+<6>[    8.749389] omap_hdq omap_hdq.0: OMAP HDQ Hardware Rev 0.5. Driver in Interrupt mode
+<6>[    8.937072] usb 2-3: new full speed USB device using ohci and address 2
+<3>[    8.952575] omap_hdq omap_hdq.0: break wait elapsed
+<6>[    8.958557] w1_master_driver w1 bus master: Family 89 for 89.000000000000.5b is not registered.
+<6>[    8.971527] OMAP Watchdog Timer Rev 0x31: initial timeout 60 sec
+<6>[    8.978393] Watchdog auto-pet enabled at 45 sec intervals
+<6>[    8.984375] Bluetooth: HCI UART driver ver 2.2
+<6>[    8.989013] Bluetooth: HCI H4 protocol initialized
+<6>[    8.994079] Bluetooth: HCILL protocol initialized
+<6>[    8.999023] cpuidle: using governor ladder
+<6>[    9.003326] cpuidle: using governor menu
+<6>[    9.040740] Registered led device: button-backlight
+<6>[    9.046539] Registered led device: red
+<6>[    9.050720] Registered led device: green
+<6>[    9.055145] Registered led device: blue
+<6>[    9.059844] Registered led device: keyboard-backlight
+<6>[    9.066589] input: lm3530_led as /devices/virtual/input/input6
+<6>[    9.075073] Registered led device: lcd-backlight
+<6>[    9.080596] cpcap_lm3554_probe:CPCAP Probe enter
+<6>[    9.094635] cpcap_lm3554_probe:CPCAP torch probe exit
+<6>[    9.101287] Registered led device: torch-flash
+<6>[    9.106262] Registered led device: spotlight
+<6>[    9.110778] LM3554 torch initialized
+<6>[    9.120422] usbcore: registered new interface driver usbhid
+<6>[    9.126312] usbhid: v2.6:USB HID core driver
+<6>[    9.131622] logger: created 64K log 'log_main'
+<6>[    9.136779] logger: created 256K log 'log_events'
+<6>[    9.142181] logger: created 64K log 'log_radio'
+<6>[    9.147064] ram_console: got buffer at 8e000000, size 20000
+<6>[    9.153320] ram_console: uncorrectable error in header
+<6>[    9.158721] ram_console: no valid data in buffer (sig = 0x55555555)
+<6>[    9.165283] console [ram-1] enabled
+<4>[   11.271820] Netfilter messages via NETLINK v0.30.
+<4>[   11.277160] nf_conntrack version 0.5.0 (3904 buckets, 15616 max)
+<4>[   11.284271] ctnetlink v0.93: registering with nfnetlink.
+<6>[   11.290130] xt_time: kernel timezone is -0000
+<6>[   11.295043] IPv4 over IPv4 tunneling driver
+<6>[   11.300994] ip_tables: (C) 2000-2006 Netfilter Core Team
+<6>[   11.307128] TCP cubic registered
+<6>[   11.310668] Initializing XFRM netlink socket
+<6>[   11.315917] NET: Registered protocol family 10
+<6>[   11.321746] lo: Disabled Privacy Extensions
+<6>[   11.326416] tunl0: Disabled Privacy Extensions
+<6>[   11.331604] Mobile IPv6
+<6>[   11.334472] IPv6 over IPv4 tunneling driver
+<6>[   11.340301] sit0: Disabled Privacy Extensions
+<6>[   11.346282] ip6tnl0: Disabled Privacy Extensions
+<6>[   11.351623] NET: Registered protocol family 17
+<6>[   11.356475] NET: Registered protocol family 15
+<6>[   11.361358] Bluetooth: L2CAP ver 2.13
+<6>[   11.365325] Bluetooth: L2CAP socket layer initialized
+<6>[   11.370819] Bluetooth: SCO (Voice Link) ver 0.6
+<6>[   11.375885] Bluetooth: SCO socket layer initialized
+<6>[   11.382629] usb 2-3: configuration #1 chosen from 1 choice
+<6>[   11.388854] Bluetooth: RFCOMM socket layer initialized
+<6>[   11.394592] Bluetooth: RFCOMM TTY layer initialized
+<6>[   11.399902] Bluetooth: RFCOMM ver 1.11
+<6>[   11.404113] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+<6>[   11.409851] Bluetooth: HIDP (Human Interface Emulation) ver 1.2
+<6>[   11.417541] cdma-modem 2-3:1.0: QSC 6085 Modem Driver converter detected
+<6>[   11.426208] usb 2-3: QSC 6085 Modem Driver converter now attached to ttyUSB0
+<3>[   11.435546] Power Management for TI OMAP3.
+<6>[   11.441650] cdma-modem 2-3:1.1: QSC 6085 Modem Driver converter detected
+<6>[   11.450775] usb 2-3: QSC 6085 Modem Driver converter now attached to ttyUSB1
+<4>[   11.458862] mmc0: host does not support reading read-only switch. assuming write-enable.
+<6>[   11.467864] mmc0: new high speed SDHC card at address aaaa
+<6>[   11.475280] mmcblk0: mmc0:aaaa SU16G 14.8 GiB 
+<6>[   11.480560]  mmcblk0:<6>SmartReflex driver initialized
+<6>[   11.494262] Disabling unused clock "sr2_fck"
+<6>[   11.498870] Disabling unused clock "sr1_fck"
+<6>[   11.503540] Disabling unused clock "gpt2_ick"
+<6>[   11.508422] Disabling unused clock "gpt3_ick"
+<6>[   11.513153] Disabling unused clock "gpt4_ick"
+<6>[   11.518035] Disabling unused clock "gpt5_ick"
+<6>[   11.522735] Disabling unused clock "gpt6_ick"
+<6>[   11.527465] Disabling unused clock "gpt7_ick"
+<6>[   11.532348] Disabling unused clock "gpt8_ick"
+<6>[   11.537078] Disabling unused clock "gpt9_ick"
+<6>[   11.541809] Disabling unused clock "gpio2_dbck"
+<6>[   11.546875] Disabling unused clock "gpio3_dbck"
+<6>[   11.551757] Disabling unused clock "gpio4_dbck"
+<6>[   11.556823] Disabling unused clock "gpio5_dbck"
+<6>[   11.561706] Disabling unused clock "gpio6_dbck"
+<6>[   11.566619] Disabling unused clock "gpt9_fck"
+<6>[   11.571502] Disabling unused clock "gpt8_fck"
+<6>[   11.576232] Disabling unused clock "gpt7_fck"
+<6>[   11.581085] Disabling unused clock "gpt6_fck"
+<6>[   11.585845] Disabling unused clock "gpt5_fck"
+<6>[   11.590545] Disabling unused clock "gpt4_fck"
+<6>[   11.595428] Disabling unused clock "gpt3_fck"
+<6>[   11.600128] Disabling unused clock "gpt2_fck"
+<6>[   11.604858] Disabling unused clock "gpt12_ick"
+<6>[   11.609832] Disabling unused clock "wdt1_ick"
+<6>[   11.614532] Disabling unused clock "usim_ick"
+<6>[   11.619415] Disabling unused clock "gpio1_dbck"
+<6>[   11.624298] Disabling unused clock "usim_fck"
+<6>[   11.629058] Disabling unused clock "rng_ick"
+<6>[   11.633850] Disabling unused clock "ssi_ick"
+<6>[   11.638458] Disabling unused clock "mcbsp_ick"
+<6>[   11.643432] Disabling unused clock "mcbsp_ick"
+<6>[   11.648254] Disabling unused clock "gpt10_ick"
+<6>[   11.653045] Disabling unused clock "gpt11_ick"
+<6>[   11.658020] Disabling unused clock "mspro_ick"
+<6>[   11.662841] Disabling unused clock "des2_ick"
+<6>[   11.667724] Disabling unused clock "sha12_ick"
+<6>[   11.672546] Disabling unused clock "aes2_ick"
+<6>[   11.677246] Disabling unused clock "icr_ick"
+<6>[   11.682037] Disabling unused clock "ssi_ssr_fck"
+<6>[   11.687072] Disabling unused clock "mcbsp_fck"
+<6>[   11.691864] Disabling unused clock "mcbsp_fck"
+<6>[   11.696838] Disabling unused clock "mspro_fck"
+<6>[   11.701660] Disabling unused clock "gpt11_fck"
+<6>[   11.706634] Disabling unused clock "gpt10_fck"
+<6>[   11.711456] Disabling unused clock "sad2d_ick"
+<6>[   11.716278] Disabling unused clock "dpll4_m6x2_ck"
+<6>[   11.721618] Disabling unused clock "dpll3_m3x2_ck"
+<6>[   11.726806] Disabling unused clock "sys_clkout1"
+<4>[   11.732696]  p1
+<6>[   11.736145] cdma-modem 2-3:1.2: QSC 6085 Modem Driver converter detected
+<6>[   11.745483] usb 2-3: QSC 6085 Modem Driver converter now attached to ttyUSB2
+<6>[   11.753723] VFP support v0.3: implementor 41 architecture 3 part 30 variant c rev 1
+<6>[   11.762451] cdma-modem 2-3:1.3: QSC 6085 Modem Driver converter detected
+<6>[   11.770629] usb 2-3: QSC 6085 Modem Driver converter now attached to ttyUSB3
+<3>[   11.779510] FIXME: no omap_set_dma_color_mode on 24xx
+<6>[   11.784942] DMA transaction error with device 0
+<7>[   11.792327] sholes-panel: enable
+<7>[   11.997528] sholes-panel: edisco_ctrl_enable_te 
+<7>[   12.002624] sholes-panel: edisco_ctrl_enable_te 
+<3>[   12.008789] regulator_check_voltage: operation not allowed for vusb
+<6>[   12.015838] cpcap_usb_det cpcap_usb_det: CPCAP USB detection device probed
+<6>[   12.027038] HP_GEN_LENS 3-0004: lens probe called....
+<3>[   12.032440] Registered hplens as V4L2 device.
+<6>[   12.037994] omap34xxcam omap34xxcam: video0 is now omap34xxcam//hplens/
+<6>[   12.050445] mt9p012 3-0036: model id detected 0x2803 mfr 0x6
+<6>[   12.056732] omap34xxcam omap34xxcam: video0 is now omap34xxcam/mt9p012/hplens/
+<6>[   12.064849] cpcap_rtc cpcap_rtc: setting system clock to 2010-02-26 06:45:48 UTC (1267166748)
+<6>[   12.074005] Freeing init memory: 196K
+<6>[   12.148254] cpcap spi1.0: notify_accy: accy=0
+<6>[   12.196777] keychord: using input dev qtouch-touchscreen for fevent
+<6>[   12.203582] keychord: using input dev sholes-keypad for fevent
+<6>[   12.211822] yaffs: dev is 32505860 name is "mtdblock4"
+<6>[   12.217376] yaffs: passed flags ""
+<4>[   12.221160] yaffs: Attempting MTD mount on 31.4, "mtdblock4"
+<4>[   12.263641] yaffs: restored from checkpoint
+<4>[   12.268280] yaffs_read_super: isCheckpointed 1
+<6>[   12.273468] yaffs: dev is 32505862 name is "mtdblock6"
+<6>[   12.278991] yaffs: passed flags ""
+<4>[   12.282684] yaffs: Attempting MTD mount on 31.6, "mtdblock6"
+<4>[   12.432495] block 1051 is bad
+<4>[   12.457214] block 1378 is bad
+<4>[   12.460540] block 1380 is bad
+<4>[   12.475952] block 1567 is bad
+<4>[   12.486419] block 1678 is bad
+<6>[   12.834259] android_usb gadget: high speed config #1: android
+<4>[   16.163055] yaffs_read_super: isCheckpointed 0
+<6>[   16.174346] yaffs: dev is 32505861 name is "mtdblock5"
+<6>[   16.179840] yaffs: passed flags ""
+<4>[   16.183502] yaffs: Attempting MTD mount on 31.5, "mtdblock5"
+<4>[   16.192138] yaffs: restored from checkpoint
+<4>[   16.196685] yaffs_read_super: isCheckpointed 1
+<3>[   16.264526] init: cannot find '/system/bin/playmp3', disabling 'bootsound'
+<3>[   16.324035] init: cannot find '/system/etc/install-recovery.sh', disabling 'flash_recovery'
+<6>[   16.494659] yaffs: dev is 32505856 name is "mtdblock0"
+<6>[   16.500213] yaffs: passed flags "no-checkpoint-write"
+<4>[   16.505645] yaffs: Attempting MTD mount on 31.0, "mtdblock0"
+<4>[   16.512329] yaffs: restored from checkpoint
+<4>[   16.516906] yaffs_read_super: isCheckpointed 1
+<6>[   16.587127] cpcap spi1.0: CPCAP uC: open status:0
+<6>[   16.828491] cpcap spi1.0: CPCAP uC: open status:0
+<6>[   16.838714] warning: `rild' uses 32-bit capabilities (legacy support in use)
+<4>[   16.925720] save exit: isCheckpointed 1
+<6>[   17.090423] PVR_K:(Warning): SysFinalise: Version string: SGX revision = 1.2.1 [497, drivers/gpu/pvr/omap3430/sysconfig.c]
+<6>[   17.243286] enabling adb
+<6>[   17.280853] adb_open
+<6>[   17.788360] android_usb gadget: high speed config #1: android
+<6>[   39.477081] request_suspend_state: wakeup (3->0) at 32579254198 (2010-02-26 06:46:15.912231437 UTC)
+<6>[   40.241882] input: sensors as /devices/virtual/input/input7
+<4>[   48.901275] modem_open
+<6>[  108.789672] request_suspend_state: sleep (0->3) at 101891814919 (2010-02-26 06:47:23.947792266 UTC)
+<7>[  108.802429] sholes-panel: sholes_panel_ctrl_disable
+<7>[  108.808044] sholes-panel: panel off
+<4>[  109.048431] save exit: isCheckpointed 1
+<4>[  109.056457] save exit: isCheckpointed 1
+<4>[  125.478576] modem_close
+<6>[  176.109741] request_suspend_state: wakeup (3->0) at 169211852767 (2010-02-26 06:48:31.267860631 UTC)
+<7>[  176.121582] sholes-panel: enable
+<7>[  176.519927] sholes-panel: panel enabled
+<7>[  176.524200] sholes-panel: edisco_ctrl_enable_te 
+<6>[  176.532684] qtouch_force_reset: Forcing HW reset
+<7>[  176.550231] sholes-panel: panel updated
+<7>[  176.554443] sholes-panel: panel on
+<6>[  176.613800] do_cmd_proc_msg: Reset done.
+<6>[  176.618103] do_cmd_proc_msg: Self-calibration started.
+<4>[  176.995208] modem_open
+<6>[  251.062957] request_suspend_state: sleep (0->3) at 244165099831 (2010-02-26 06:49:46.221107695 UTC)
+<7>[  251.074707] sholes-panel: sholes_panel_ctrl_disable
+<7>[  251.080963] sholes-panel: panel off
+<4>[  251.393737] save exit: isCheckpointed 1
