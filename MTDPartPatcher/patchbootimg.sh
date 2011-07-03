@@ -227,7 +227,7 @@ systemStartHex=`awk '/system/ { print $2 }' $dmesgmtdpart`
 systemStartBytes=`printf %d $(awk '/system/ { print $2 }' $dmesgmtdpart)`
 systemSizeKBytes=`echo|awk '{printf "%d",'$systemMB' * 1024}'`
 systemBytes=`echo|awk '{printf "%f",'$systemSizeKBytes' * 1024}'`
-systemCL="${systemSizeKBytes}k@${systemStartHex}(system)"
+systemCL="${systemSizeKBytes}K@${systemStartHex}(system)"
 
 cacheSizeKBytes=`echo|awk '{printf "%d",'$cacheMB' * 1024}'`
 cacheBytes=`echo|awk '{printf "%f",'$cacheSizeKBytes' * 1024}'`
@@ -241,13 +241,13 @@ else
     cacheStartBytes=`echo|awk '{printf "%f",'$systemStartBytes' + '$systemBytes'}'`
     cacheStartHex=`echo|awk '{printf "%X",'$cacheStartBytes'}'`
 fi
-cacheCL="${cacheSizeKBytes}k@0x${cacheStartHex}(cache)"
+cacheCL="${cacheSizeKBytes}K@0x${cacheStartHex}(cache)"
 
 dataStartBytes=`echo|awk '{printf "%f",'$cacheStartBytes' + '$cacheBytes'}'`
 dataStartHex=`echo|awk '{printf "%X",'$dataStartBytes'}'`
 dataSizeBytes=`echo|awk '{printf "%f",'$(printf '%d' ${userdataEndHex})' - '$dataStartBytes'}'`
 dataSizeKBytes=`echo|awk '{printf "%d",'$dataSizeBytes' / 1024}'`
-userdataCL="${dataSizeKBytes}k@0x${dataStartHex}(userdata)"
+userdataCL="${dataSizeKBytes}K@0x${dataStartHex}(userdata)"
 
 buildCMDline="${CLInit} mtdparts=$nandtype"
 for partition in `cat $dmesgmtdpart|awk '{print $1}'`;do
