@@ -126,11 +126,11 @@ then
     removecmtd
 fi
 
-# need at least 1.5mb cache for recovery to not complain
+# need at least 1.375mb cache for recovery to not complain
 # Meh, need whole numbers
-if [ "`echo|awk '{printf "%d" '$cacheMB' * 10}'`" -lt "15" -o "$cacheMB" = "" ];
+if [ "`echo|awk '{printf '$cacheMB' * 1000}'`" -lt "1375" -o "$cacheMB" = "" ];
 then
-    cacheMB=1.5
+    cacheMB=1.375
 fi
 
 # make sure we are sizing in units of 128k ( 0.125 MB )
