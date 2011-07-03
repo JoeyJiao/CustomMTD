@@ -188,9 +188,8 @@ echo "# thinking you have a different SPL to the one you have" >> $config
 echo "# do not complain if things don't work out" >> $config
 echo "# ( tbh, you probably don't need it, so leave it alone ;)" >> $config
 echo "#####" >> $config
-LastRecoverymd5sum=`md5sum /dev/mtd/$(awk -F: '/recovery/ {print $1}' $mtdpart)ro|awk '{print $1}'`
 echo "# md5sum of the last recovery flashed by customMTD" >> $config
-echo "recoverymd5=$LastRecoverymd5sum" >> $config
+echo "recoverymd5=forceRecFlash" >> $config
 busybox unix2dos $config
 
 echo "Info1=New config written to :" >> $logfile
