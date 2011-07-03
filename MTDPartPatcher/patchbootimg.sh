@@ -88,7 +88,6 @@ else
         eval ${partition}SizeMBytes=`echo |awk '{printf "%.3f", '$Sizebytes' / 1048576}'`
         eval SizeMB=\$${partition}SizeMBytes
         partition=`echo $partition|sed s/user//`
-echo $partition
         echo|awk '{printf "%s%s%s%-9s%s%9.3f %s","Orig_","'$partition'","Size=","'$partition'","=",'$SizeMB',"MB\n"}' >> $logfile
     done
     SCD_Total=`echo|awk '{printf "%g",'$systemSizeMBytes' + '$cacheSizeMBytes' + '$userdataSizeMBytes' }'`
@@ -274,7 +273,9 @@ fi
     for MTDPart in system cache userdata;do
         SizeMB=$(printf %d `awk '/'${MTDPart}'/ {print "0x"$2}' $mtdpart`|awk '{printf "%.3f", $1 / 1048576}')
         MTDPart=`echo $MTDPart|sed s/user//`
-        echo|awk '{printf "%s%s%s%-9s%s%9.3f %s","New_","'$MTDPart'","Size=","'$MTDPart'","=",'$SizeMB',"MB\n"}' >> $logfile
+        mount /$MTDPart
+        MTDPartfree=`df -h /$MTDPart|awk '/'$MTDPart'$/ {print $4}'`
+        echo|awk '{printf "%s%s%s%-9s%s%9.3f %s %8s%s","New_","'$MTDPart'","Size=","'$MTDPart'","=",'$SizeMB',"MB","'$MTDPartfree'","\n"}' >> $logfile
     done
 return
 }
