@@ -113,13 +113,13 @@ if [ ! -e $config ];
 then
     writeconfig
 fi
-busybox dos2unix $config
 if [ "`awk -Fconfigversion\= '$0 = $2' $config|awk '$0 = $1'`" -lt "159" ];
 then
     cp $config `dirname ${config}`/`basename $config .txt`-`date +%Y-%m-%d-%H%S-%Z`.txt
     writeconfig
 fi
-. $config
+sed s/$// $config > /tmp/`basename $config`
+. /tmp/`basename $config`
 
 if [ "$systemMB" = "0" ];
 then
@@ -191,6 +191,7 @@ echo "#####" >> $config
 LastRecoverymd5sum=`md5sum /dev/mtd/$(awk -F: '/recovery/ {print $1}' $mtdpart)ro|awk '{print $1}'`
 echo "# md5sum of the last recovery flashed by customMTD" >> $config
 echo "recoverymd5=$LastRecoverymd5sum" >> $config
+busybox unix2dos $config
 
 echo "Info1=New config written to :" >> $logfile
 echo "Info2=$config" >> $logfile
@@ -297,6 +298,7 @@ then
     if [ "$boot" = "recovery" ];
     then
         sed s/recoverymd5=.*/recoverymd5=`md5sum /dev/mtd/${mtdblk}|awk '{print $1}'`/ -i $config
+        busybox unix2dos $config
     fi
     exit
 else
@@ -334,6 +336,7 @@ for partition in system cache;do
 done
 sed s/systemMB=.*/systemMB=$systemOpt/ -i $config
 sed s/cacheMB=.*/cacheMB=$cacheOpt/ -i $config
+busybox unix2dos $config
 # TODO
 # backup existing ROM,
 # patch recove*y's init.rc,
