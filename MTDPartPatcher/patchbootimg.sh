@@ -119,6 +119,7 @@ then
 fi
 sed s/$// $config > /tmp/`basename $config`
 . /tmp/`basename $config`
+rm /tmp/`basename $config`
 
 if [ "$systemMB" = "0" ];
 then
@@ -314,6 +315,9 @@ return
 
 removecmtd ()
 {
+rm $config
+boot=recovery
+echo "Mode=remove" >> $logfile
 dumpimg
 KCMDline=""
 flashimg
@@ -431,7 +435,6 @@ echo "Mode=$boot" >> $logfile
 
 if [ "$boot" = "remove" ];
 then
-    boot=recovery
     removecmtd
 fi
 if [ "$boot" = "recovery" ];
