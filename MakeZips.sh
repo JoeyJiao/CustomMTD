@@ -40,7 +40,12 @@ echo "run_program(\"/tmp/patchbootimg.sh\", \"$1\");" >> $updater
 cat >> $updater << "EOF"
 if file_getprop("/tmp/cMTD.log","success") == "true"
 then
-    ui_print("Custom MTD written");
+    if file_getprop("/tmp/cMTD.log","Mode") == "remove"
+    then
+        ui_print("cMTD removed from recovery.img");
+    else
+        ui_print("cMTD written to ",file_getprop("/tmp/cMTD.log","Mode"),".img");
+    endif;
     if file_getprop("/tmp/cMTD.log","Mode") != "boot"
     then
         ui_print("Previous Partition sizes");
@@ -70,8 +75,7 @@ then
             ui_print("before 'flash' or 'restore'");
         else
             ui_print("recovery's partitions have not");
-            ui_print("been changed");
-            ui_print("format not required");
+            ui_print("changed, format not required");
         endif;
     else
         ui_print("customMTD removed");
@@ -116,9 +120,12 @@ if file_getprop("/tmp/cMTD.log","Info3") != ""
 then
     ui_print(file_getprop("/tmp/cMTD.log","Info3"));
 endif;
-if file_getprop("/sdcard/mtdpartmap.txt","brave") == "yesiamreallybrave"
+if run_program("busybox test -f /sdcard/mtdpartmap.txt") == "0"
 then
-    ui_print("you have a Bravery buff active");
+    if file_getprop("/sdcard/mtdpartmap.txt","brave") == "yesiamreallybrave"
+    then
+        ui_print("you have a Bravery buff active");
+    endif;
 endif;
 EOF
 zip -r ${outdir}/$1-v${version}-CustomMTD.zip META-INF MTDPartPatcher
