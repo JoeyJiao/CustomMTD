@@ -7,7 +7,7 @@
 #
 # https://github.com/Firerat/CustomMTD
 
-version=1.5.9-Alpha5
+version=1.5.9-Beta1
 ##
 
 readdmesg ()
@@ -302,6 +302,7 @@ then
         sed s/recoverymd5=.*/recoverymd5=`md5sum /dev/mtd/${mtdblk}|awk '{print $1}'`/ -i $config
         busybox unix2dos $config
     fi
+    ForcedTestMsg
     exit
 else
     echo "Error1=Writing $boot failed" >> $logfile
@@ -363,6 +364,7 @@ AutoPatch ()
 # should have done this ages ago
 readdmesg
 readconfig
+CheckForceTest
 if [ "$boot" = "recovery" -o "$boot" = "boot" ];
 then
     return
@@ -391,6 +393,57 @@ else
     fi
 fi
 return
+}
+CheckForceTest ()
+{
+# since I'm not able to test none msm_nand, going to force test mode
+confirmedworking="msm_nand:"
+# separate known working mtdparts drivers with white space
+for i in $confirmedworking;do
+    if [ "$nandtype" = "$i" ];
+    then
+        mtdtypeconfirmed=yes
+        break
+    else
+        mtdtypeconfirmed=no
+    fi
+done
+if [ "$opt" != "testrun" ];
+then
+    if [ "$mtdtypeconfirmed" = "no" -a "$brave" != "yesiamreallybrave"];
+    then
+        DoTestRun
+    elif [ "$mtdtypeconfirmed" = "no" -a "$brave" = "yesiamreallybrave" ];
+    then
+        echo "Info1=really brave flag set" >> $logfile
+        echo "Info2=Test mode for $nandtype skipped" >> $logfile
+    fi
+fi
+return
+}
+DoTestRun ()
+{
+$dmesg > $sdcard/cMTD-testoutput.txt
+busybox sed s/serialno=.*\ a/serialno=XXXXXXXXXX\ a/g -i $sdcard/cMTD-testoutput.txt
+sh -x $me recovery testrun $3 >> $sdcard/cMTD-testoutput.txt 2>&1
+sed -e '/+ echo #/ d' $sdcard/cMTD-testoutput.txt -i
+busybox unix2dos $sdcard/cMTD-testoutput.txt
+exit
+}
+ForcedTestMsg ()
+{
+# explain why we forced a testrun, and how to break out of it
+if [ "$opt" = "testrun" -a "$mtdtypeconfirmed" = "no" ];
+then
+    echo "# Test Mode forced" >> $sdcard/cMTD-testoutput.txt
+    echo "# $nandtype has not been confirmed working" >> $sdcard/cMTD-testoutput.txt
+    echo "# if you think the kernel cmdline looks ok" >> $sdcard/cMTD-testoutput.txt
+    echo "# you can add" >> $sdcard/cMTD-testoutput.txt
+    echo "# brave=yesiamreallybrave" >> $sdcard/cMTD-testoutput.txt
+    echo "# to the config, it will skip test mode and actually flash stuff" >> $sdcard/cMTD-testoutput.txt
+    echo "# hope it works out well :)" >> $sdcard/cMTD-testoutput.txt
+    echo "# If in doubt email me this file firer4t@gmail.com" >> $sdcard/cMTD-testoutput.txt
+fi
 }
 #end functions
 me=$0
@@ -422,11 +475,7 @@ then
 fi
 if [ "$boot" = "test" ];
 then
-    $dmesg > $sdcard/cMTD-testoutput.txt
-    busybox sed s/serialno=.*\ a/serialno=XXXXXXXXXX\ a/g -i $sdcard/cMTD-testoutput.txt
-    sh -x $me recovery testrun $3 >> $sdcard/cMTD-testoutput.txt 2>&1
-    busybox unix2dos $sdcard/cMTD-testoutput.txt
-    exit
+    DoTestRun
 fi
 
 AutoPatch

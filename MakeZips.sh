@@ -15,7 +15,7 @@ fi
 AutoMTD ()
 {
 tar -cz -f AutoMTD_partitionPatcher/AutoMTDPatchTools/MTDPartPatcher.tar.gz MTDPartPatcher
-sed s/version=.*\$/version=${version}/ -i AutoMTD_partitionPatcher/PatchUpdateScript.sh 
+sed s/version=.*\$/version=${version}/ -i AutoMTD_partitionPatcher/PatchUpdateScript.sh
 tar -cj -f ${outdir}/AutoMTD_partitionPatcher_v${version}.tar.bz2 AutoMTD_partitionPatcher
 # make zip for easy forum posting
 zip ${outdir}/AutoMTD_partitionPatcher_v${version}.zip ${outdir}/AutoMTD_partitionPatcher_v${version}.tar.bz2
@@ -28,7 +28,7 @@ cat > $updater << "EOF"
 set_progress(1.000000);
 EOF
 echo "ui_print(\"CustomMTD Patcher v${version}\");" >> $updater
-echo "ui_print(\"Mode=$1\");" >> $updater
+echo "ui_print(\"Mode $1\");" >> $updater
 cat >> $updater << "EOF"
 ui_print("Extracting Patch Tools...");
 package_extract_dir("MTDPartPatcher", "/tmp");
@@ -116,7 +116,10 @@ if file_getprop("/tmp/cMTD.log","Info3") != ""
 then
     ui_print(file_getprop("/tmp/cMTD.log","Info3"));
 endif;
-
+if file_getprop("/sdcard/mtdpartmap.txt","brave") == "yesiamreallybrave"
+then
+    ui_print("you have a Bravery buff active");
+endif;
 EOF
 zip -r ${outdir}/$1-v${version}-CustomMTD.zip META-INF MTDPartPatcher
 sign ${outdir}/$1-v${version}-CustomMTD.zip
@@ -137,7 +140,7 @@ for file in $@;do
     echo "signing ${file} complete"
     rm ${file}
     echo "signed file : ${outdir}/`basename $file .${ext}`_S.${ext}"
-done 
+done
 return
 }
 AutoMTD
