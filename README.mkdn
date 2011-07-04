@@ -1,0 +1,364 @@
+CustomMTD
+=========
+What is CustomMTD?
+------------------
+CustomMTD (cMTD) is a utility for resizing the MTD partitions on Android Smartphones.
+
+Based on an idea by lbcoder on XDA Forums, customMTD simply re-writes a special kernel cmdline found in boot.imgs, In practice we need to do this with both the recovery.img and your ROM's boot.img
+
+CustomMTD Download
+------------------
+At the moment best place is [http://tinyurl.com/custommtd](http://tinyurl.com/custommtd)
+
+alternativly, pack it yourself see my *verbose* build instuctions below, right at the bottom ;)
+
+Why use CustomMTD?
+------------------
+Many reasons, my favoute is "just for the hell of it"
+
+but seriously
+
+The most popular reason for using cMTD is to increase the size of data.
+A few use cMTD to increase the size of system, typically G1/MT3G users who want to install a Sense based ROM.
+
+How to use CustomMTD
+====================
+
+decide on system and cache size
+-------------------------------
+The first thing you need to do is decide on a new partition layout.
+
+To begin with keep it simple
+
+Boot into your ROM and
+
+    adb shell
+    busybox df -h /system /cache /data
+
+You will be presented with your current partition sizes
+
+Take note of the Used size of System
+Round up to mb, and then + 1
+
+i.e.
+Used system is 85.3 so rounded up to 86 + 1 = 87
+
+To begin with try cache size of 2
+
+
+Going further
+-------------
+Once have played around with cMTD a few times and you are comfortable you may like to take a closer look at what is installed in system
+
+* Ringtones you don't use?
+* Extras like RomManger, CMWallpaper, bootanimation?
+
+Rom Manager is updated quite often, when you update via the Market a new copy is stored on /data rendering the one on system redundent.
+
+The same goes for the Google apps, if you have updated via the market then the one in /system/app is redundent
+
+CMWallpapers, do you use them? even if you do consider
+
+1. extract CMWallpaper.apk from the ROM.zip
+2. delete from ROM.zip
+3. later install the extracted one to /sd-ext/app ( assuming you use /sd-ext )
+
+If you're using clockwork just turn off sign checks.
+If you use RA then google sign update zip
+
+
+Editing ROM zips is very easy just make sure you don't delete anything critical
+
+somewhere on Cyanogenmod.com is a wiki called ( I think ) barebones, it should help you out.
+
+
+
+Format Routine
+--------------
+Currently your device has it's partitions setup, no doubt they have files on them.
+We intend to change this partition layout. The trouble is, if we leave files on the partitions it may get all confused next time you boot, resulting in garbage files and all kinds of problems.
+
+
+If you like where you are at with your current ROM, back it up!  ( but before you, do you might like to clear cache first )
+
+There are several ways to clean up your partitions for cMTD
+
+
+Personally I find Clockwork Recovery the easiest, just go into *mounts and storage* and format system,cache and data
+
+
+RA Recovery dosn't have a system format, you either need to use some scripting
+
+    mount /system
+    rm /system/*
+
+as well as a factory reset
+
+
+or get your phone into fastboot mode, and from your PC/Mac
+
+    fastboot erase system -w
+
+*actually I think mac is fastboot.mac but don't quote me on that*
+
+You need to do this whenever you change recovery's partition sizes. It should be done before rebooting to recovery. With the fastboot method this means you must first boot to fastboot mode, do the erase and then reboot to recovery. You can probably understand why I prefer Clockwork
+
+Configure Partition sizes
+-------------------------
+Prior to Version 1.5.9-Alpha4 the config was very simple
+a plain text file /sdcard/mtdpartmap.txt with the line
+
+    mtd <system size mb> <cache size mb>
+
+e.g.
+
+    mtd 85.5 1.750
+
+Note, versions prior to 1.5.8 required whole mb e.g
+
+    mtd 86 2
+
+as of v1.5.9-Alpha4 the config is a little more involved ( if you are a prior cMTD user have you wondered why only one File ;) )
+
+flash AutoPatch-v1.5.9-Beta1-CustomMTD_S.zip
+you should get a table printed e.g.
+
+    cMTD written to recovery.img
+    New Partition sizes
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    system   =   91.000 MB    89.9M
+    cache    =   27.000 MB    25.9M
+    data     =   91.750 MB    90.6M
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    recovery's partitions have not
+    been changed
+    format not required
+    New config written to :
+    /sdcard/mtdpartmap.txt
+
+you should have a new /sdcard/mtdpartmap.txt
+
+    #
+    # please *do not* edit configversion!
+    configversion=159
+    #####
+    systemMB=91.000 # system size in mb ( increments of 0.125 mb )
+    cacheMB=27.000 # cache size in mb ( increments of 0.125 mb )
+    systemfree=2 # used by Optimise feature
+    cachefree=2 # used by Optimise feature
+    # Optimise is not turned on yet
+    # 1 = 128k , 2 = 256k , 4 = 512k
+    # yeap, you figured it out, 8 = 1024k ( or 1 mb )
+    # NOTE, depending on your recovery version you may see slightly more
+    # free space in the ROM, as its yaffs2 tends to be more efficient with space
+    optimise=no
+    mindatasize=50 # don't patch recovery if data size will be less than this
+    #####
+    SPL=1.33.0013d # use this to 'spoof' your SPL version
+    # NOTE: SPL spoofing tricks a ROM's assert checks into
+    # thinking you have a different SPL to the one you have
+    # do not complain if things don't work out
+    # ( tbh, you probably don't need it, so leave it alone ;)
+    #####
+    # md5sum of the last recovery flashed by customMTD
+    recoverymd5=9a90c013bd8eaab23da95e89fbe6d384
+
+
+This file is saved in dos format, so you can use windows Notepad to edit it
+but tbh it's probably easier to edit the file using [sed](http://en.wikipedia.org/wiki/Sed) ( that's how I edit mine )
+
+but feel free to use what you like, just make sure you save in plain text (.txt)
+
+For the moment we only need worry about the system and cache size
+The other options are 'advanced' or not in use yet ( Optimise is on my Vunstable local branch )
+
+    adb shell
+    grep MB /sdcard/mtdpartmap.txt
+
+This will display just the lines containing MB
+e.g.
+
+    systemMB=91.000 # system size in mb ( increments of 0.125 mb )
+    cacheMB=27.000 # cache size in mb ( increments of 0.125 mb )
+
+To change system size from 91.000 to 68.000
+
+    sed s/systemMB=91.000/systemMB=68.000/ -i /sdcard/mtdpartmap.txt
+    sed s/cacheMB=27.000/cacheMB=1.375/ -i /sdcard/mtdpartmap.txt
+
+confirm it worked
+
+    grep MB /sdcard/mtdpartmap.txt
+
+
+flash AutoPatch-v1.5.9-Beta1-CustomMTD_S.zip
+you should see two tables, your original layout and the new one
+
+    cMTD written to recovery.img
+    Previous Partition sizes
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    system   =   91.000 MB
+    cache    =   27.000 MB
+    data     =   91.750 MB
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    New Partition sizes
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    system   =   68.000 MB
+    cache    =    1.375 MB
+    data     =  140.375 MB
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Please format:
+    system, cache and data
+    Reboot to recovery
+    before 'flash' or 'restore'
+
+do your Format Routine, and reboot recovery
+
+to confirm it worked
+
+    adb shell
+    mount -a
+    df -h
+
+To see some nice geeky stuff
+
+    adb shell
+    cat /proc/cmdline
+
+Restoring a ROM
+---------------
+For obvious reasons the ROM you are restoring **Must** fit. Since most people use cMTD to slim down system and increase data it usually does. One area which creates problems is cache, for most people cache is unused, well to a point..
+
+* CM Based ROMs will use /cache/dalvik-cache to store system dex files
+* The Market will use it for downloads, and will often not clean them up when done.
+
+if you find your ROM won't restore and fails with cache, here is an easy fix
+
+    adb shell
+    cd /sdcard/clockworkmod/backup/<rom backup>
+    umount /cache
+    mkyaffs2image /cache cache.img
+    sed -i s/$(awk '/cache/ {print $1}' nandroid.md5)/$(md5sum cache.img|awk '{print $1}')/ nandroid.md5
+
+once you have done that, format cache and reboot recovery
+
+If it still complains about cache format it again, this has never failed me yet.
+
+Since your restored ROM's boot.img doesn't have correct cMTD, we need to patch it
+flash AutoPatch-v1.5.9-Beta1-CustomMTD_S.zip
+
+    cMTD written to boot.img
+    New Partition sizes
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    system   =   68.000 MB    96.0K
+    cache    =    1.375 MB   248.0K
+    data     =  140.375 MB    82.5M
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    recovery's partitions have not
+    been changed
+    format not required
+
+You're not quite done yet, CM based ROMs run a script at the point of install. It looks at avialable cache and decides if system dex could fit on it. If you have significantly reduced the size of cache then you must fix this
+
+    adb shell
+    mount /system
+    echo "dalvik.vm.dexopt-data-only=1" >> /system/build.prop
+
+Flashing a ROM
+--------------
+Essentially the same as restoring a ROM, but no need to worry about the system dex problem.
+
+* Flash your ROM
+* If you are lucky, your ROM will include AutoCMTD and you will see a table fly by :D, if not flash AutoPatch-v1.5.9-Beta1-CustomMTD_S.zip
+
+reboot to your ROM and Enjoy
+
+Removing cMTD
+-------------
+Yes, you may like to remove cMTD
+The primary reason for removing cMTD is to flash a radio or hboot via recovery.
+I'm not going to go into detail here,
+but if you can then consider using fastboot instead of recovery for this.
+Sometimes you have no option, recovery will have to do..
+
+there are few ways to remove cMTD
+
+With early versions you just flashed an original recovery.img
+
+In later versions, I supplied an extra remove.zip which can still be used.
+
+since version 1.5.9-Alpha4, you just set systemMB to 0
+
+    adb shell
+    sed -i s/systemMB=.*\ /systemMB=0 /sdcard/mtdpartmap.txt
+
+then flash AutoPatch-v1.5.9-Beta1-CustomMTD_S.zip, format routine, reboot to recovery
+If you are restoring a rom, then flash AutoPatch-v1.5.9-Beta1-CustomMTD_S.zip (twice) to make sure the boot.img is patched
+
+
+Market Downloads and cMTD
+-------------------------
+In this latest version of cMTD ( v1.5.9-beta1 ) I have removed the 06BindCache script, the vast majority of ROMs out there are CM Kangs, and CM7 has a script called 06mountdl. This script will bind mount /cache/download if it feels it must.
+
+If people are still having issues with Market d/l while using 06mountdl, let me know and I will provide a solution ( it is actually in CM7 Magpie, the script called 06SetEnv )
+
+
+some of you may still need/want the old 06BindCache script, you can d/l it [here - do a save as](https://github.com/Firerat/CustomMTD/raw/14ad5f651e57032c343e7fb58e415015bdb3acc6/redundent_scripts/BindCache.sh)
+
+rename it to 07BindCache.sh , install it in /system/etc/init.d/  and chmod 700
+
+Hero users seem to suffer the most from failing Market downloads, I think this is mostly due to the fact that none of their ROMs actually use busybox's run-parts to make use of init.d style boot scripts.
+
+adding that BindCache.sh script to something like gscript ( Search Market, lol ) and launching manually will solve it, but a decent sized cache partition will also work.
+
+
+
+
+I found a Bug
+=============
+kewl, [https://github.com/Firerat/CustomMTD/issues](https://github.com/Firerat/CustomMTD/issues)
+Even better, if you have a fix then do a pull request
+
+but I'm not on github?
+----------------------
+* tweet me @firer4t
+
+* PM me on whatever forum I'm not barred from.
+
+* googlemail.com might work, it's the same as twitter
+
+* [google+](https://plus.google.com/107879914658638667838) , tbh at time of writing I've not really done anything on G+ yet
+
+TODO
+====
+fix typos, formating and readability of this README
+---------------------------------------------------
+as per title, I should probably find a doc for the mkdn formating
+
+list known working/ none working devices
+----------------------------------------
+
+Fully impliment Optimise feature
+--------------------------------
+I have it working, it's just a little clumsy atm
+
+Building
+========
+Building requires linux, just run the Makezips.sh
+( when I said verbose I was kidding )
+
+External Links
+==============
+some device specific Links
+
+[The original G1/MT3G Post](http://forum.xda-developers.com/showthread.php?p=7061471#post7061471)
+
+[Hero](http://forum.xda-developers.com/showthread.php?t=754805)
+
+[MT3G Slide](http://forum.xda-developers.com/showthread.php?t=893706)
+
+[Evo4G](http://forum.xda-developers.com/showthread.php?t=855424)
+
+[Desire](http://forum.xda-developers.com/showthread.php?t=806321)
+
+
