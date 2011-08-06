@@ -7,7 +7,7 @@
 #
 # https://github.com/Firerat/CustomMTD
 
-version=1.5.9-Beta1
+version=1.5.9-Beta2
 ##
 
 readdmesg ()
@@ -121,7 +121,10 @@ sed s/$// $config > /tmp/`basename $config`
 . /tmp/`basename $config`
 rm /tmp/`basename $config`
 
-if [ "$systemMB" = "0" ];
+systemMB=`printf %.3f $systemMB`
+cacheMB=`printf %.3f $cacheMB`
+
+if [ "$systemMB" = "0.000" ];
 then
     removecmtd
 fi
@@ -409,7 +412,7 @@ for i in $confirmedworking;do
 done
 if [ "$opt" != "testrun" ];
 then
-    if [ "$mtdtypeconfirmed" = "no" -a "$brave" != "yesiamreallybrave"];
+    if [ "$mtdtypeconfirmed" = "no" -a "$brave" != "yesiamreallybrave" ];
     then
         DoTestRun
     elif [ "$mtdtypeconfirmed" = "no" -a "$brave" = "yesiamreallybrave" ];
@@ -502,7 +505,7 @@ fi
 dumpimg
 if [ "$opt" = "testrun" ];
 then
-    sed s/$boot/testrun/ -i $logfile 
+    sed s/$boot/testrun/ -i $logfile
     flashimg echo
 else
     flashimg
