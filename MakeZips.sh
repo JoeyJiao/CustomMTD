@@ -120,7 +120,7 @@ if file_getprop("/tmp/cMTD.log","Info3") != ""
 then
     ui_print(file_getprop("/tmp/cMTD.log","Info3"));
 endif;
-if run_program("busybox test -f /sdcard/mtdpartmap.txt") == "0"
+if run_program("/sbin/busybox test -f /sdcard/mtdpartmap.txt") == "0"
 then
     if file_getprop("/sdcard/mtdpartmap.txt","brave") == "yesiamreallybrave"
     then
