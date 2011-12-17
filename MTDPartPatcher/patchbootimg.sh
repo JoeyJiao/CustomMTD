@@ -12,7 +12,7 @@ version=1.5.8
 
 readdmesg ()
 {
-$dmesg|awk '/0x.+: "/ {sub(/-/," ");gsub(/"/,"");gsub(/0x/,"");printf $6" 0x"toupper ($3)" 0x"toupper ($4)"\n"}' > $dmesgmtdpart
+$dmesg|awk '/0x.+: "/ {sub(/-/," ");gsub(/"/,"");gsub(/0x/,"");printf $8" 0x"toupper ($5)" 0x"toupper ($6)"\n"}' > $dmesgmtdpart
 
 # need a sanity check, what if recovery had been running for ages and the dmesg buffer had been filled?
 for sanity in misc recovery boot system cache userdata;do
@@ -152,6 +152,7 @@ DataBytes=`echo|awk '{printf "%f",'$(printf '%d' ${userdataEndHex})' - '$DataSta
 DataKBytes=`echo|awk '{printf "%d",'$DataBytes' / 1024}'`
 
 KCMDline="${CLInit},${systemSizeKBytes}k@${systemStartHex}(system),${cacheSizeKBytes}k@0x${cacheStartHex}(cache),${DataKBytes}k@0x${DataStartHex}(userdata)"
+echo $KCMDline
 return
 }
 
@@ -189,7 +190,7 @@ if [ "`expr $cacheSizeKBytes \/ 1024`" -lt "15" ];
 then
     cat > $wkdir/06BindCache << "EOF"
 #!/system/bin/sh
-# 2010-08-05 Firerat, bind mount cache to sd ext partition, and mount mtdblock4 for Clockwork recovery's use
+# 2010-08-05 Firerat, bind mount cache to sd ext partition, and mount mtdblock5 for Clockwork recovery's use
 busybox umount /cache
 # Bind mount /sd-ext/cache ( or /system/sd/cache ) to /cache
 if [ "`busybox egrep -q "sd-ext|/system/sd" /proc/mounts;echo $?`" = "0" ];
@@ -217,7 +218,7 @@ fi
 
 if [ "`grep -q \"/dev/cache\" /proc/mounts;echo $?`" != "0" ];
 then
-    busybox mount -t yaffs2 -o nosuid,nodev /dev/block/mtdblock4 /dev/cache
+    busybox mount -t yaffs2 -o nosuid,nodev /dev/block/mtdblock5 /dev/cache
 fi
 if [ ! -d /dev/cache/recovery ];
 then
@@ -257,13 +258,17 @@ wkdir=/tmp
 sdcard=/sdcard
 mapfile=$sdcard/mtdpartmap.txt
 mtdpart=/proc/mtd
-dmesgmtdpart=/dev/mtdpartmap
+#dmesgmtdpart=/dev/mtdpartmap
+dmesgmtdpart=/sdcard/mtdpartmap
 logfile=$wkdir/recovery.log
 dmesg=dmesg
+#add this since need access sdcard
+mount /dev/block/mmcblk0p1 /sdcard
 if [ "$boot" = "test" ];
 then
     dmesg > /sdcard/cMTD-testoutput.txt
-    busybox sed s/serialno=.*\ a/serialno=XXXXXXXXXX\ a/g -i /sdcard/cMTD-testoutput.txt
+#no serialno in Huawei kernel dmesg
+#    busybox sed s/serialno=.*\ a/serialno=XXXXXXXXXX\ a/g -i /sdcard/cMTD-testoutput.txt
     sh -x $me recovery testrun >> /sdcard/cMTD-testoutput.txt 2>&1
     busybox unix2dos /sdcard/cMTD-testoutput.txt
     exit
@@ -292,5 +297,5 @@ if [ "$opt" = "testrun" ];
 then
     flashimg echo
 else
-    flashimg
+    flashimg echo
 fi
